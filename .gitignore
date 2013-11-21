@@ -4,3 +4,4 @@
 *.swo
 dist
 django_mce_pygments.egg-info
+build
