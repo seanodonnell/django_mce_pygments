@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+*.swp
+*.swo
+dist
+django_mce_pygments.egg-info
