@@ -7,32 +7,57 @@
 <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
 
     <script type="text/javascript">
-        tinyMCEPopup.requireLangPack();
 
-        var ExampleDialog = {
-            init : function() {
-                var f = document.forms[0];
-                // Get the selected contents as text and place it in the input
-                f.code.value = tinyMCEPopup.editor.selection.getContent({format : 'text'});
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(
+                        cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    tinyMCEPopup.requireLangPack();
+
+    var ExampleDialog = {
+        init : function() {
+            var f = document.forms[0];
+            // Get the selected contents as text and place it in the input
+            f.code.value = tinyMCEPopup.editor.selection.getContent(
+                                                         {format : 'text'});
             },
 
         insert : function() {
+
+            var csrftoken = getCookie('csrftoken');
             // Insert the contents from the input into the document
-            $.post(".", { lang: $('#lang').val(),code: $('#code').val() }, function(data) {
+            $.post(".", { lang: $('#lang').val(),code: $('#code').val(),
+                                   csrfmiddlewaretoken:  csrftoken},
+            function(data) {
                 $('#code').val(data);
-                tinyMCEPopup.editor.execCommand('mceInsertContent', false, document.forms[0].code.value);
+                tinyMCEPopup.editor.execCommand('mceInsertContent',
+                                     false, document.forms[0].code.value);
                 tinyMCEPopup.close();      
             });
         }
     };
 
-        tinyMCEPopup.onInit.add(ExampleDialog.init, ExampleDialog);
+    tinyMCEPopup.onInit.add(ExampleDialog.init, ExampleDialog);
 
     </script>
 </head>
 <body>
 
-    <form id="pygments_form" action="#">
+    <form id="pygments_form" method="POST" action="{% url 'pygments' %}">
+        {% csrf_token %}
         <p><label>Language:</label></p>
         <p>
             <select id="lang" name="lang" type="text" class="text">
