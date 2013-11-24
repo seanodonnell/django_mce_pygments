@@ -8,6 +8,24 @@
 <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
     <script type="text/javascript">
 
+    function collect_data()
+    {
+            var csrftoken = getCookie('csrftoken');
+            // Insert the contents from the input into the document
+            var data = { lang: $('#lang').val(),code: $('#code').val(),
+                                   style: $('#style').val(),
+                                   linenos: $('#linenos').is(':checked'),
+                                   csrfmiddlewaretoken:  csrftoken};
+
+            if (data['linenos'] == true)
+            {
+                data['linenostart'] = $('#linenostart').val();
+                data['highlight'] = $('#highlight').val();
+            }            
+
+	    return data;
+    }
+
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -37,11 +55,9 @@
 
         insert : function() {
 
-            var csrftoken = getCookie('csrftoken');
             // Insert the contents from the input into the document
-            $.post(".", { lang: $('#lang').val(),code: $('#code').val(),
-                                   style: $('#style').val(),
-                                   csrfmiddlewaretoken:  csrftoken},
+            var fdata = collect_data();
+            $.post(".", fdata,
             function(data) {
                 $('#code').val(data);
                 tinyMCEPopup.editor.execCommand('mceInsertContent',
@@ -58,10 +74,7 @@
 	preview : function() {
 		$('#codetab').hide();
 		$('#previewtab').show();
-                var csrftoken = getCookie('csrftoken');
-		var req_data = {lang: $('#lang').val(),code: $('#code').val(),
-                                   style: $('#style').val(),
-                                   csrfmiddlewaretoken:  csrftoken};
+		var req_data = collect_data();
                 $.ajax({
 			url:'{% url 'pygments' %}',
 			type:'POST',
@@ -98,6 +111,21 @@
                 {% endfor %}
             </select>
         </div>
+	<div id="linenoscontrol" class="control">
+            <span class="controllabel"><label>Show Line Numbers?:</label></span>
+		<input type="checkbox" id="linenos" name="linenos" value="linenos"></input>
+	</div>
+
+	<div id="linenostartcontrol" class="control">
+            <span class="controllabel"><label>Line Numbers start at:</label></span>
+		<input type="number" id="linenostart" name="linenostart" value="1"></input>
+	</div>
+	<div id="highlightcontrol" class="control">
+            <span class="controllabel"><label>highlight lines (comma seperated, e.g. 1,2,5):</label></span>
+		<input type="text" id="highlight" name="highlight" value=""></input>
+	</div>
+
+
 
                 <input type="button" id="view_code" name="view_code" value="Code" onclick="ExampleDialog.view_code();" />
                 <input type="button" id="preview" name="preview" value="Preview" onclick="ExampleDialog.preview();" />

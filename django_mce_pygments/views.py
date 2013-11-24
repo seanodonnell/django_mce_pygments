@@ -14,10 +14,21 @@ def pygments(request, template_name="pygments/pygments.html"):
         lang = request.POST.get('lang', 'python')
         style = request.POST.get('style', 'default')
         code = request.POST.get('code', '')
+        linenos = request.POST.get('linenos', False)
+        linenostart = int(request.POST.get('linenostart', 1))
+        highlight_lines = request.POST.get('highlight', '').split(',')
+        if linenos == 'true':
+            linenos = 'inline'
+        else:
+            linenos = False
+             
         code = highlight(code, get_lexer_by_name(lang),
                             HtmlFormatter(
                                 cssclass="pygments pygments_%s" % lang,
-                                full=False, style=style, noclasses=True),
+                                full=False, style=style, noclasses=True,
+                                linenos=linenos,
+				linenostart=linenostart,
+                                hl_lines=highlight_lines),
                             )
         return HttpResponse(code)
     else:
