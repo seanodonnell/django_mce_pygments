@@ -12,8 +12,10 @@
 			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mcePygments');
 			ed.addCommand('mcePygments', function() {
 				ed.windowManager.open({
-					file : '/pygments',
-					inline : 1
+					file : '/pygments/renderer/',
+					inline : 1,
+					width: 550,
+					height: 300
 				}, {
 					plugin_url : url // Plugin absolute URL
 				});

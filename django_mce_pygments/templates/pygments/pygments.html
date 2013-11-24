@@ -3,6 +3,7 @@
 {% load staticfiles %}
 <head>
     <title>Pygments</title>
+    <link rel="stylesheet" href="{% static "css/pygmentsplugin.css" %}">
     <script type="text/javascript" src="{% static "grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js" %}"></script>
 <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
 
@@ -40,6 +41,7 @@
             var csrftoken = getCookie('csrftoken');
             // Insert the contents from the input into the document
             $.post(".", { lang: $('#lang').val(),code: $('#code').val(),
+                                   style: $('#style').val(),
                                    csrfmiddlewaretoken:  csrftoken},
             function(data) {
                 $('#code').val(data);
@@ -58,19 +60,22 @@
 
     <form id="pygments_form" method="POST" action="{% url 'pygments' %}">
         {% csrf_token %}
-        <p><label>Language:</label></p>
-        <p>
+        <div id="langcontrol" class="control">
+            <span class="controllabel"><label>Language:</label></span>
             <select id="lang" name="lang" type="text" class="text">
-                <option value="python">Python</option>
-                <option value="pycon">Python Console</option>
-                <option value="pytb">Python TraceBack</option>
-                <option value="html">HTML</option>
-                <option value="django">Django</option>
-                <option value="html+django">HTML+Django</option>
-                <option value="javascript">JavaScript</option>
-                <option value="css">CSS</option>
+		{% for lang in langs %}
+                <option value="{{ lang.1 }}" >{{ lang.0 }}</option>
+                {% endfor %}
             </select>
-        </p>
+        </div>
+        <div id="stylecontrol" class="control">
+            <span class="controllabel"><label>Style:</label></span>
+            <select id="style" name="style" type="text" class="text">
+                {% for style in styles %}
+		<option value="{{ style }}">{{style}}</option>
+                {% endfor %}
+            </select>
+        </div>
         <p><label>Code:</label></p>
         <p><textarea id="code" name="code" cols="80" rows="10"></textarea></p>
         <p id="result"></p>
