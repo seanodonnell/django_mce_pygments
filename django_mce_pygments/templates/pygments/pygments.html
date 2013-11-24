@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{% static "css/pygmentsplugin.css" %}">
     <script type="text/javascript" src="{% static "grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js" %}"></script>
 <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-
     <script type="text/javascript">
 
     function getCookie(name) {
@@ -49,7 +48,30 @@
                                      false, document.forms[0].code.value);
                 tinyMCEPopup.close();      
             });
-        }
+        },
+
+        view_code : function() {
+		$('#previewtab').hide();
+		$('#codetab').show();
+
+	},
+	preview : function() {
+		$('#codetab').hide();
+		$('#previewtab').show();
+                var csrftoken = getCookie('csrftoken');
+		var req_data = {lang: $('#lang').val(),code: $('#code').val(),
+                                   style: $('#style').val(),
+                                   csrfmiddlewaretoken:  csrftoken};
+                $.ajax({
+			url:'{% url 'pygments' %}',
+			type:'POST',
+			data : req_data,
+		}).done(function(msg)
+		{
+			$('#previewcontent').html(msg);
+		});
+
+	}
     };
 
     tinyMCEPopup.onInit.add(ExampleDialog.init, ExampleDialog);
@@ -76,8 +98,20 @@
                 {% endfor %}
             </select>
         </div>
-        <p><label>Code:</label></p>
-        <p><textarea id="code" name="code" cols="80" rows="10"></textarea></p>
+
+                <input type="button" id="view_code" name="view_code" value="Code" onclick="ExampleDialog.view_code();" />
+                <input type="button" id="preview" name="preview" value="Preview" onclick="ExampleDialog.preview();" />
+        <div id="tab-container" class="tab-container">
+	        <div id="codetab">
+                    <p><textarea id="code" name="code" cols="80" rows="10"></textarea></p>
+	        </div>
+	        <div id="previewtab" style="display:none">
+	            <p>Preview</p>
+		    <div id="previewcontent">
+
+		    </div>
+	        </div>
+	</div>
         <p id="result"></p>
         <div class="mceActionPanel">
             <div style="float: left">
