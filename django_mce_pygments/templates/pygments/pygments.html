@@ -54,6 +54,14 @@
             },
 
         insert : function() {
+         if($('#srcattach').is(':checked'))
+         {
+            if($('#srcattachname').val().trim() == "")
+            {
+                alert("You must specify a filename for the source code");
+                return;
+            }
+         }
 
             // Insert the contents from the input into the document
             var fdata = collect_data();
@@ -73,6 +81,33 @@
 		$('#codetab').show();
 
 	},
+        toggle_linenos : function() {
+
+             if(!$('#linenos').is(':checked'))
+             {
+                 $('#linenostart').attr('disabled', true);
+                 $('#highlight').attr('disabled', true);
+             }
+             else
+             {
+                 $('#linenostart').attr('disabled', false);
+                 $('#highlight').attr('disabled', false);
+             }
+
+        },
+        toggle_srcattach : function() {
+
+             if(!$('#srcattach').is(':checked'))
+             {
+                 $('#srcattachname').attr('disabled', true);
+             }
+             else
+             {
+                 $('#srcattachname').attr('disabled', false);
+             }
+
+        },
+
 	preview : function() {
 		$('#codetab').hide();
 		$('#previewtab').show();
@@ -91,6 +126,19 @@
 
     tinyMCEPopup.onInit.add(ExampleDialog.init, ExampleDialog);
 
+     $(document).ready(function()
+     {
+         if(!$('#linenos').is(':checked'))
+         {
+            $('#linenostart').attr('disabled', true);
+            $('#highlight').attr('disabled', true);
+         }
+         if(!$('#srcattach').is(':checked'))
+         {
+            $('#srcattachname').attr('disabled', true);
+         }
+
+     });
     </script>
 </head>
 <body>
@@ -115,7 +163,7 @@
         </div>
 	<div id="linenoscontrol" class="control">
             <span class="controllabel"><label>Show Line Numbers?:</label></span>
-		<input type="checkbox" id="linenos" name="linenos" value="linenos"></input>
+		<input type="checkbox" id="linenos" name="linenos" value="linenos" onchange="ExampleDialog.toggle_linenos()"></input>
 	</div>
 
 	<div id="linenostartcontrol" class="control">
@@ -144,7 +192,7 @@
 	</div>
         <div id="options">
 
-		Include raw source code link: <input type="checkbox" id="srcattach" name="srcattach" value="srcattach"></input>
+		Include raw source code link: <input type="checkbox" id="srcattach" name="srcattach" value="srcattach" onchange="ExampleDialog.toggle_srcattach();"></input>
 		Filename to use (e.g. mycode.py): <input type="text" id="srcattachname" name="srcattachname" value=""></input>
         <div>
         <div class="mceActionPanel">
