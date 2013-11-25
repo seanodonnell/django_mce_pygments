@@ -77,6 +77,8 @@
         },
 
         view_code : function() {
+                $( "#view_code" ).removeClass( "inactive");
+                $( "#preview" ).addClass( "inactive");
 		$('#previewtab').hide();
 		$('#codetab').show();
 
@@ -111,6 +113,9 @@
 	preview : function() {
 		$('#codetab').hide();
 		$('#previewtab').show();
+
+                $( "#view_code" ).addClass( "inactive");
+                $( "#preview" ).removeClass( "inactive");
 		var req_data = collect_data();
                 $.ajax({
 			url:'{% url 'pygments' %}',
@@ -171,30 +176,34 @@
 		<input type="number" id="linenostart" name="linenostart" value="1"></input>
 	</div>
 	<div id="highlightcontrol" class="control">
-            <span class="controllabel"><label>highlight lines (comma seperated, e.g. 1,2,5):</label></span>
+            <span class="controllabel"><label>Highlight lines (comma seperated, e.g. 1,2,5):</label></span>
 		<input type="text" id="highlight" name="highlight" value=""></input>
 	</div>
+        <div class="clear"></div>
 
 
-
-                <input type="button" id="view_code" name="view_code" value="Code" onclick="ExampleDialog.view_code();" />
-                <input type="button" id="preview" name="preview" value="Preview" onclick="ExampleDialog.preview();" />
+                <input type="button" class="tabbutton " id="view_code" name="view_code" value="Code" onclick="ExampleDialog.view_code();" />
+                <input type="button" class="tabbutton inactive" id="preview" name="preview" value="Preview" onclick="ExampleDialog.preview();" />
+        <div class="clear"></div>
         <div id="tab-container" class="tab-container">
 	        <div id="codetab">
-                    <p><textarea id="code" name="code" cols="80" rows="10"></textarea></p>
+                    <textarea id="code" name="code" cols="80" rows="10"></textarea>
 	        </div>
 	        <div id="previewtab" style="display:none">
-	            <p>Preview</p>
 		    <div id="previewcontent">
 
 		    </div>
 	        </div>
 	</div>
         <div id="options">
-
+                <div id="sourceattachcontrol" class="control">
 		Include raw source code link: <input type="checkbox" id="srcattach" name="srcattach" value="srcattach" onchange="ExampleDialog.toggle_srcattach();"></input>
+                </div>
+                <div id="sourceattachnamecontrol" class="control">
 		Filename to use (e.g. mycode.py): <input type="text" id="srcattachname" name="srcattachname" value=""></input>
+                </div>
         <div>
+        <div class="clear"></div>
         <div class="mceActionPanel">
             <div style="float: left">
                 <input type="button" id="insert" name="insert" value="{#insert}" onclick="ExampleDialog.insert();" />

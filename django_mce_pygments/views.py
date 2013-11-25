@@ -48,7 +48,7 @@ def pygments(request, template_name="pygments/pygments.html"):
             template = get_template('pygments/source_link.html')
             context = Context({"file_name": file_name})
             link_html = template.render(context)
-            highlighted_code += link_html
+            highlighted_code = link_html + highlighted_code
 
         return HttpResponse(highlighted_code)
     else:

@@ -15,7 +15,7 @@
 					file : '/pygments/renderer/',
 					inline : 1,
 					width: 550,
-					height: 300
+					height: 360
 				}, {
 					plugin_url : url // Plugin absolute URL
 				});
