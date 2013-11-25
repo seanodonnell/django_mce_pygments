@@ -57,6 +57,8 @@
 
             // Insert the contents from the input into the document
             var fdata = collect_data();
+            fdata['srcattach'] = $('#srcattach').is(':checked');
+            fdata['srcattachname'] = $('#srcattachname').val();
             $.post(".", fdata,
             function(data) {
                 $('#code').val(data);
@@ -140,7 +142,11 @@
 		    </div>
 	        </div>
 	</div>
-        <p id="result"></p>
+        <div id="options">
+
+		Include raw source code link: <input type="checkbox" id="srcattach" name="srcattach" value="srcattach"></input>
+		Filename to use (e.g. mycode.py): <input type="text" id="srcattachname" name="srcattachname" value=""></input>
+        <div>
         <div class="mceActionPanel">
             <div style="float: left">
                 <input type="button" id="insert" name="insert" value="{#insert}" onclick="ExampleDialog.insert();" />
