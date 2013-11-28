@@ -36,31 +36,31 @@ File path defaults assume a [Mezzanine](https://github.com/stephenmcd/mezzanine)
 
 Place the app on your python path
 
-Add django_mce_pygments to your INSTALLED APPS
+Add django_mce_pygments to your ```INSTALLED APPS```
 
 Check that the paths below for jquery and tinymce are correct, and override
 
 in your settings file if neccessary
 
-Make sure the SOURCE_CODE_FILE_DIR exists and is writable
+Make sure the ```SOURCE_CODE_FILE_DIR``` exists and is writable
 
 ## Configuration
 
 The following can be set in your settings.py. All are optional, but the first two probably need adjustment if you are not using Mezzanine.
 
-'''MCE_POPUP_LOCATION''' - The location of your tiny_mce_popup.js file, defaults to  'grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js'. This assumes you are using static files, so this url will be passed through the static template tag, and probably resolve to /staticgrappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js.
+```MCE_POPUP_LOCATION``` - The location of your tiny_mce_popup.js file, defaults to  'grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js'. This assumes you are using static files, so this url will be passed through the static template tag, and probably resolve to /staticgrappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js.
 
-'''JQUERY_LOCATION''' - The location of your jquery library. Defaults to 'mezzanine/js/jquery-1.7.1.min.js'. This assumes you are using static files, so this url will be passed through the static template tag, and probably resolve to /static/mezzanine/js/jquery-1.7.1.min.js 
+```JQUERY_LOCATION``` - The location of your jquery library. Defaults to 'mezzanine/js/jquery-1.7.1.min.js'. This assumes you are using static files, so this url will be passed through the static template tag, and probably resolve to /static/mezzanine/js/jquery-1.7.1.min.js 
 
-'''MCE_DEFAULT_LEXERS''' - Languages in this list will be the first in the dropdown in the pygments dialog to save you time hunting. Defaults to an empty list, an example would be:
+```MCE_DEFAULT_LEXERS``` - Languages in this list will be the first in the dropdown in the pygments dialog to save you time hunting. Defaults to an empty list, an example would be:
 
     MCE_DEFAULT_LEXERS = ['Python', 'Javascript']
  
-'''MCE_DEFAULT_STYLE''' - The default style to have selected in the pygments dialog. This defaults to None. An example of its use:
+```MCE_DEFAULT_STYLE``` - The default style to have selected in the pygments dialog. This defaults to None. An example of its use:
 
     MCE_DEFAULT_STYLE = 'pastie'
 
-'''SOURCE_CODE_FILE_DIR''' - The location to store raw source code files used for lines.  The default is static/source, make sure it exists and is writable.
+```SOURCE_CODE_FILE_DIR``` - The location to store raw source code files used for lines.  The default is static/source, make sure it exists and is writable.
 
 
 The template pygments/source_link.html can be overridden or customized to change how the download link for source code is presented.
