@@ -27,15 +27,21 @@ The inserted source with download link:
 ## Requirements
 
 [pygments](http://pygments.org/)
+
 it is assumed you are using django.contril.staticfiles (https://docs.djangoproject.com/en/dev/howto/static-files/) to manage static media
+
 File path defaults assume a [Mezzanine](https://github.com/stephenmcd/mezzanine) installation but this can be easily overridden in your settings.py
 
 ## INSTALLATION
 
 Place the app on your python path
+
 Add django_mce_pygments to your INSTALLED APPS
+
 Check that the paths below for jquery and tinymce are correct, and override
+
 in your settings file if neccessary
+
 Make sure the SOURCE_CODE_FILE_DIR exists and is writable
 
 ## Configuration
@@ -56,9 +62,12 @@ The following can be set in your settings.py. All are optional, but the first tw
 
 '''SOURCE_CODE_FILE_DIR''' - The location to store raw source code files used for lines.  The default is static/source, make sure it exists and is writable.
 
+
 The template pygments/source_link.html can be overridden or customized to change how the download link for source code is presented.
 
 ## AUTHORS
+
 [seanodonnell](https://github.com/seanodonnell/)
+
 [fruitschen](https://github.com/fruitschen/)
 
