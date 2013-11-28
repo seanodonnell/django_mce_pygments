@@ -9,13 +9,13 @@ This project is based on https://github.com/fruitschen/django_mce_pygments
 ## Screenshots
 
 The pygments icon in tinymce
-![The pygments icon](screenshots/django_mce_pygments_1.png)
+![The pygments icon](https://github.com/seanodonnell/django_mce_pygments/blob/master/screenshots/django_mce_pygments_1.png)
 The dialog
-![The Dialog](screenshots/django_mce_pygments_2.png)
+![The Dialog](https://github.com/seanodonnell/django_mce_pygments/blob/master/screenshots/django_mce_pygments_2.png)
 The preview tab
-![The Preview Tab](screenshots/django_mce_pygments_3.png)
+![The Preview Tab](https://github.com/seanodonnell/django_mce_pygments/blob/master/screenshots/django_mce_pygments_3.png)
 The inserted source with download link
-![The inserted source with download link](screenshots/django_mce_pygments_4.png)
+![The inserted source with download link](https://github.com/seanodonnell/django_mce_pygments/blob/master/screenshots/django_mce_pygments_4.png)
 
 ## Requirements
 
