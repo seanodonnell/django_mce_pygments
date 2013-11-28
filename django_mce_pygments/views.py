@@ -58,7 +58,7 @@ def pygments(request, template_name="pygments/pygments.html"):
         langs = [(l[0].strip(), l[1][0].strip()) for l in get_all_lexers()]
         langs.sort()
         
-        default_lexers = settings.MCE_DEFAULT_LEXERS
+        default_lexers = getattr(settings, 'MCE_DEFAULT_LEXERS', [])
         
 	for index, lexer in enumerate(default_lexers):
         	for lang in langs:
@@ -68,10 +68,15 @@ def pygments(request, template_name="pygments/pygments.html"):
 
         langs = default_lexers + langs
 
-        default_style = settings.MCE_DEFAULT_STYLE
+        default_style = getattr(settings, 'MCE_DEFAULT_STYLE', None) 
         styles.insert(0, styles.pop(styles.index(default_style)))
-
-        context = {"styles": styles, "langs": langs,}
+        mce_popup_location = getattr(settings, 'MCE_POPUP_LOCATION',
+                    'grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js')
+        jquery_location = getattr(settings,  'JQUERY_LOCATION' ,
+                                         'mezzanine/js/jquery-1.7.1.min.js')
+        context = {"styles": styles, "langs": langs,
+                   "mce_popup_location": mce_popup_location,
+                   "jquery_location": jquery_location}
         return render_to_response(template_name, context,
                                    context_instance=RequestContext(request))
 

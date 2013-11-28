@@ -4,8 +4,8 @@
 <head>
     <title>Pygments</title>
     <link rel="stylesheet" href="{% static "css/pygmentsplugin.css" %}">
-    <script type="text/javascript" src="{% static "grappelli/tinymce/jscripts/tiny_mce/tiny_mce_popup.js" %}"></script>
-<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+    <script type="text/javascript" src="{% static mce_popup_location %}"></script>
+<script src="{% static jquery_location %}"></script>
     <script type="text/javascript">
 
     function collect_data()
