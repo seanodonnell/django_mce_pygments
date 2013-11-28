@@ -7,16 +7,16 @@
 This project is based on https://github.com/fruitschen/django_mce_pygments
 
 ## Screenshots
-![alt text](https://github.com/seanodonnell/django_mce_pygments/raw/master/screenshots/django_mce_pygments_1.png "Logo Title Text 1")
+![alt text](https://github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_1.png "Logo Title Text 1")
 
 The pygments icon in tinymce:
-![The pygments icon](https://github.com/seanodonnell/django_mce_pygments/raw/master/screenshots/django_mce_pygments_1.png)
+![The pygments icon](https://raw.github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_1.png)
 The dialog:
-![The Dialog](https://github.com/seanodonnell/django_mce_pygments/raw/master/screenshots/django_mce_pygments_2.png)
+![The Dialog](https://raw.github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_2.png)
 The preview tab:
-![The Preview Tab](https://github.com/seanodonnell/django_mce_pygments/raw/master/screenshots/django_mce_pygments_3.png)
+![The Preview Tab](https://raw.github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_3.png)
 The inserted source with download link:
-![The inserted source with download link](https://github.com/seanodonnell/django_mce_pygments/raw/master/screenshots/django_mce_pygments_4.png)
+![The inserted source with download link](https://raw.github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_4.png)
 
 ## Requirements
 
