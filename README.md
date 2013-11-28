@@ -7,7 +7,6 @@
 This project is based on https://github.com/fruitschen/django_mce_pygments
 
 ## Screenshots
-![alt text](https://github.com/seanodonnell/django_mce_pygments/master/screenshots/django_mce_pygments_1.png "Logo Title Text 1")
 
 The pygments icon in tinymce:
 
