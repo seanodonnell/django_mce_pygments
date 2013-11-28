@@ -28,7 +28,7 @@ The inserted source with download link:
 
 [pygments](http://pygments.org/)
 
-it is assumed you are using django.contril.staticfiles (https://docs.djangoproject.com/en/dev/howto/static-files/) to manage static media
+it is assumed you are using [django.contrib.staticfiles](https://docs.djangoproject.com/en/dev/howto/static-files/) to manage static media
 
 File path defaults assume a [Mezzanine](https://github.com/stephenmcd/mezzanine) installation but this can be easily overridden in your settings.py
 
