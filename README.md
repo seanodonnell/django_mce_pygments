@@ -44,6 +44,17 @@ in your settings file if neccessary
 
 Make sure the ```SOURCE_CODE_FILE_DIR``` exists and is writable
 
+Find your tinymce_setup.js file and add pygments to the plugins line, here is an example:
+
+    plugins: "inlinepopups,contextmenu,tabfocus,searchreplace,fullscreen,advimage,advlink,paste,media,table,pygments,spellchecker"
+
+If you are using mezzanine and static files, the plugin should be available by default. If it does not load, copy the django_mce_pygments/static/grappelli/tinymce/jscripts/tiny_mce/plugins/pygments directory into your tinymce plugins directory.
+
+Finally add the pygments urls to your urls.py. In a mezzanine installation, make sure this is before the mezzanine.urls include, as this includes a catchall. Example:
+
+    ("^pygments/", include("django_mce_pygments.urls")),
+    ("^", include("mezzanine.urls")),
+
 ## Configuration
 
 The following can be set in your settings.py. All are optional, but the first two probably need adjustment if you are not using Mezzanine.
