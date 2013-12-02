@@ -48,6 +48,10 @@ Find your tinymce_setup.js file and add pygments to the plugins line, here is an
 
     plugins: "inlinepopups,contextmenu,tabfocus,searchreplace,fullscreen,advimage,advlink,paste,media,table,pygments,spellchecker"
 
+Also add it to your theme, here is an example:
+
+    theme_advanced_buttons1: "bold,italic,|,link,unlink,|,image,|,media,charmap,|,code,|,table,|,bullist,numlist,blockquote,|,undo,redo,|,formatselect,|,search,replace,|,pygments,|,fullscreen,",
+
 If you are using mezzanine and static files, the plugin should be available by default. If it does not load, copy the django_mce_pygments/static/grappelli/tinymce/jscripts/tiny_mce/plugins/pygments directory into your tinymce plugins directory.
 
 Finally add the pygments urls to your urls.py. In a mezzanine installation, make sure this is before the mezzanine.urls include, as this includes a catchall. Example:
