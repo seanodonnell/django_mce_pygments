@@ -59,6 +59,10 @@ Finally add the pygments urls to your urls.py. In a mezzanine installation, make
     ("^pygments/", include("django_mce_pygments.urls")),
     ("^", include("mezzanine.urls")),
 
+If you are running Mezzanine, it automatically strips out inline styles which breaks pygments source highlighting, you can turn this off in your settings.py file as follows:
+
+    RICHTEXT_FILTER_LEVEL = 3
+
 ## Configuration
 
 The following can be set in your settings.py. All are optional, but the first two probably need adjustment if you are not using Mezzanine.

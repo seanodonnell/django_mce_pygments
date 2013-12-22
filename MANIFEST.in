@@ -1,2 +1,2 @@
 include AUTHORS CHANGES README INSTALL LICENCE
-recursive-include django_mce_pygments *.py *.html *.js *.css
+recursive-include django_mce_pygments *.py *.html *.js *.css *.gif
