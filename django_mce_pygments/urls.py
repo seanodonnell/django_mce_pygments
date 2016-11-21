@@ -1,5 +1,7 @@
-from django.conf.urls import url, patterns 
+from django.conf.urls import url
 
-urlpatterns = patterns('django_mce_pygments.views',
-    url(r'^renderer/$', 'pygments', name='pygments'),
-)
+from django_mce_pygments import views
+
+urlpatterns = [
+    url(r'^renderer/$', views.pygments, name='pygments'),
+]
