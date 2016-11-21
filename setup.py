@@ -3,7 +3,7 @@ import sys
 
 from setuptools import setup, find_packages
 
-version = '0.1.1'
+version = '0.1.2'
 
 setup(name='django_mce_pygments',
     description='Django app that provides a pygments plugin for tinymce and backend functionality. Particularly useful for Mezzanine',
